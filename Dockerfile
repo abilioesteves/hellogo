@@ -17,16 +17,7 @@ RUN go test -v .
 RUN CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -ldflags '-extldflags "-static"' -o /hello .
 
 # PKG
-FROM alpine:latest
-
-RUN apk add --no-cache --update \
-  curl \
-  wget \
-  nmap \
-  bind-tools
-
-COPY --from=builder /hello /
-
+FROM scratch
 
 EXPOSE 8080
 
