@@ -19,6 +19,8 @@ RUN CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -ldflags '-extldflag
 # PKG
 FROM scratch
 
+COPY --from=builder /hello /
+
 EXPOSE 8080
 
 CMD ["./hello"]
